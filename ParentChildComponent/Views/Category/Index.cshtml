@@ -1,0 +1,78 @@
+﻿@model List<Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/my-tree.css" rel="stylesheet" />
+
+<h1>Categories</h1>
+@{
+    if (Model != null && Model.Any())
+    {
+        await ShowTreeData(Model);
+    }
+}
+
+
+@functions {
+    public async Task ShowTreeData(List<Category> categories)
+    {
+        if (categories != null && categories.Any())
+        {
+            <table class="table table-sm table-borderless" style="margin-left:20px">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col"></th>
+                    <tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in categories)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                        if (item.SubCategories != null && item.SubCategories.Any())
+                        {
+                            <tr>
+                                <td colspan="2">
+                                    @{
+                                        await ShowTreeData(item.SubCategories);
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+
+
+    public async Task ShowTreeData2(List<Category> categories)
+    {
+        if (categories != null && categories.Any())
+        {
+            <ul class="wtree">
+                @foreach (var item in categories)
+                {
+                    <li>
+                        <span>@item.Name</span>
+                        <span>
+                            @{
+                                await ShowTreeData2(item.SubCategories);
+                            }
+                        </span>
+                    </li>
+                }
+            </ul>
+        }
+    }
+}
