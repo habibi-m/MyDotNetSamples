@@ -1,0 +1,29 @@
+﻿@model List<Mobile>
+@{
+    ViewData["Title"] = "View All Mobiles Review";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Specification</td>
+        <td>Rating</td>
+        <td>Review Details</td>
+    </tr>
+    @foreach (Mobile mobile in Model)
+    {
+        <tr>
+            <td>@mobile.Id</td>
+            <td>@mobile.Name</td>
+            <td>@mobile.Specfication</td>
+            <td>@mobile.ReviewDetails?.Rating</td>
+            <td>
+                <feature name="@nameof(FeatureFlags.MobileDetailedReview)">
+                    @Html.ActionLink("Click Here", "ReviewDetails", new { id = mobile.Id })
+                </feature>
+            </td>
+        </tr>
+    }
+</table>

@@ -25,6 +25,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <feature name="@nameof(FeatureFlags.MobileReview)">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Mobile" asp-action="Index">Mobile Reviews</a>
+                            </li>
+                        </feature>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

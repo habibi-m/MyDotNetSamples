@@ -1,6 +1,10 @@
 using FeatureFlagsDemo.Data;
+using FeatureFlagsDemo.Handlers;
+using FeatureFlagsDemo.Interfaces;
+using FeatureFlagsDemo.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,13 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddTransient<IMobileDataService, DummyMobileDataService>();
+// Configure Feature Management
+builder.Services.AddFeatureManagement()
+                .UseDisabledFeaturesHandler(new CustomDisabledFeatureHandler());
+
 
 var app = builder.Build();
 
