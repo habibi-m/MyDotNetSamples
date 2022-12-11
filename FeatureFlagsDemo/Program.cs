@@ -5,6 +5,7 @@ using FeatureFlagsDemo.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.FeatureManagement;
+using Microsoft.FeatureManagement.FeatureFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IMobileDataService, DummyMobileDataService>();
 // Configure Feature Management
 builder.Services.AddFeatureManagement()
-                .UseDisabledFeaturesHandler(new CustomDisabledFeatureHandler());
+                .UseDisabledFeaturesHandler(new CustomDisabledFeatureHandler())
+                .AddFeatureFilter<PercentageFilter>()
+                .AddFeatureFilter<TimeWindowFilter>();
 
 
 var app = builder.Build();

@@ -1,5 +1,6 @@
 ﻿using FeatureFlagsDemo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement;
 using System.Diagnostics;
 
 namespace FeatureFlagsDemo.Controllers
@@ -7,14 +8,25 @@ namespace FeatureFlagsDemo.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IFeatureManager _featureManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IFeatureManager featureManager)
         {
             _logger = logger;
+            _featureManager = featureManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            if (await _featureManager.IsEnabledAsync(nameof(FeatureFlags.MobileReview)))
+            {
+                ViewData["WelcomeMessage"] = "Welcome - Mobile Review Application";
+            }
+            else
+            {
+                ViewData["WelcomeMessage"] = "Welcome";
+            }
+
             return View();
         }
 
