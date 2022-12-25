@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortingFilteringPaging", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentChildComponent", "ParentChildComponent\ParentChildComponent.csproj", "{D8704F06-4B1C-417C-934B-AF2DAC469418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureFlagsDemo", "FeatureFlagsDemo\FeatureFlagsDemo.csproj", "{331FDB1E-EA39-42A9-8DAD-9E8922A06AF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeatureFlagsDemo", "FeatureFlagsDemo\FeatureFlagsDemo.csproj", "{331FDB1E-EA39-42A9-8DAD-9E8922A06AF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionBasedAuthorization", "PermissionBasedAuthorization\PermissionBasedAuthorization.csproj", "{A63C9885-472E-4B60-9E1D-08BF5A3B2C4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{331FDB1E-EA39-42A9-8DAD-9E8922A06AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{331FDB1E-EA39-42A9-8DAD-9E8922A06AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{331FDB1E-EA39-42A9-8DAD-9E8922A06AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A63C9885-472E-4B60-9E1D-08BF5A3B2C4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A63C9885-472E-4B60-9E1D-08BF5A3B2C4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A63C9885-472E-4B60-9E1D-08BF5A3B2C4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A63C9885-472E-4B60-9E1D-08BF5A3B2C4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
