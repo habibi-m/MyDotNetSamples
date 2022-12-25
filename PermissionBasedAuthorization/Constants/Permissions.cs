@@ -20,5 +20,15 @@
             public const string Edit = "Permissions.Products.Edit";
             public const string Delete = "Permissions.Products.Delete";
         }
+
+        public static class Providers
+        {
+            public const string View = "Permissions.Providers.View";
+            public const string Create = "Permissions.Providers.Create";
+            public const string Edit = "Permissions.Providers.Edit";
+            public const string Delete = "Permissions.Providers.Delete";
+        }
+
+
     }
 }

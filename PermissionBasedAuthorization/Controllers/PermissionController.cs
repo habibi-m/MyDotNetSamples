@@ -16,11 +16,14 @@ namespace PermissionBasedAuthorization.Controllers
         {
             _roleManager = roleManager;
         }
+
         public async Task<ActionResult> Index(string roleId)
         {
             var model = new PermissionViewModel();
             var allPermissions = new List<RoleClaimsViewModel>();
-            allPermissions.GetPermissions(typeof(Permissions.Products), roleId);
+            //allPermissions.GetPermissions(typeof(Permissions.Products), roleId);
+            allPermissions.GetAllPermissions();
+            
             var role = await _roleManager.FindByIdAsync(roleId);
             model.RoleId = roleId;
             var claims = await _roleManager.GetClaimsAsync(role);

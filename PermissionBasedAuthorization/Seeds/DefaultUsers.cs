@@ -51,6 +51,7 @@ namespace PermissionBasedAuthorization.Seeds
         {
             var adminRole = await roleManager.FindByNameAsync("SuperAdmin");
             await roleManager.AddPermissionClaimAsync(adminRole, "Products");
+            await roleManager.AddPermissionClaimAsync(adminRole, "Providers");
         }
 
         public static async Task AddPermissionClaimAsync(this RoleManager<IdentityRole> roleManager, IdentityRole role, string module)

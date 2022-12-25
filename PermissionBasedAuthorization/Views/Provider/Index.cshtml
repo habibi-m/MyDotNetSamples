@@ -1,0 +1,20 @@
+﻿@inject IAuthorizationService AuthorizationService
+
+<h1>Product Management</h1>
+<br />
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Providers.Create)).Result.Succeeded)
+{
+        <button class="btn btn-success">Create</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Providers.View)).Result.Succeeded)
+{
+        <button class="btn btn-info">View</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Providers.Edit)).Result.Succeeded)
+{
+        <button class="btn btn-warning">Modify</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Providers.Delete)).Result.Succeeded)
+{
+        <button class="btn btn-danger">Delete</button>
+}
