@@ -1,6 +1,6 @@
 ﻿@inject IAuthorizationService AuthorizationService
 
-<h1>Product Management</h1>
+<h1>Provider Management</h1>
 <br />
 @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Providers.Create)).Result.Succeeded)
 {

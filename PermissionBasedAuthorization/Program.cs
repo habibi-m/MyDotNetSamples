@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PermissionBasedAuthorization.Data;
 using PermissionBasedAuthorization.Permission.PermissionBasedAuthorization.Permission;
 using PermissionBasedAuthorization.Permission;
-using PermissionBasedAuthorization.Seeds;
+using PermissionBasedAuthorization.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +22,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddDefaultTokenProviders();
 builder.Services.AddScoped<UserManager<IdentityUser>>();
 builder.Services.AddScoped<RoleManager<IdentityRole>>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
-await SeedDatabase(app);
+await app.SeedDatabaseAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -56,30 +57,31 @@ app.MapRazorPages();
 app.Run();
 
 
-async Task SeedDatabase(WebApplication host)
-{
-    using (var scope = host.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
 
-        var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-        var logger = loggerFactory.CreateLogger("app");
+//async Task SeedDatabase(WebApplication host)
+//{
+//    using (var scope = host.Services.CreateScope())
+//    {
+//        var services = scope.ServiceProvider;
 
-        try
-        {
-            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+//        var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+//        var logger = loggerFactory.CreateLogger("app");
 
-            await DefaultRoles.SeedAsync(userManager, roleManager);
-            await DefaultUsers.SeedBasicUserAsync(userManager, roleManager);
-            await DefaultUsers.SeedSuperAdminAsync(userManager, roleManager);
+//        try
+//        {
+//            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+//            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-            logger.LogInformation("Finished Seeding Default Data");
-            logger.LogInformation("Application Starting");
-        }
-        catch (Exception ex)
-        {
-            logger.LogWarning(ex, "An error occurred seeding the DB");
-        }
-    }
-}
+//            await DefaultRoles.SeedAsync(userManager, roleManager);
+//            await DefaultUsers.SeedBasicUserAsync(userManager, roleManager);
+//            await DefaultUsers.SeedSuperAdminAsync(userManager, roleManager);
+
+//            logger.LogInformation("Finished Seeding Default Data");
+//            logger.LogInformation("Application Starting");
+//        }
+//        catch (Exception ex)
+//        {
+//            logger.LogWarning(ex, "An error occurred seeding the DB");
+//        }
+//    }
+//}
