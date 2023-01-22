@@ -9,11 +9,12 @@ namespace WebCrawler
     public class Product
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Link { get; set; }
-        public string Rate { get; set; }
-        public string OldPrice { get; set; }
-        public string NewPrice { get; set; }
-        public string Thumb { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
+        public string OriginalPrice { get; set; }
+        public string Dimention { get; set; }
+        public string Weight { get; set; }
+        public string ImageLink { get; set; }
+
     }
 }
